@@ -1,11 +1,44 @@
-# 간단한 더하기 문제 생성기
+# 간단한 더하기 문제 생성기 (Arithmetic Worksheet Generator)
 
-## Run
+유치원생/초등학생을 위한 산수 연습 문제지(LaTeX)를 생성하는 도구입니다.
+
+## 설치 (Installation)
+
+필요한 패키지를 설치합니다:
+```bash
+micromamba activate py313
+micromamba install pyyaml
+# 또는 pip install pyyaml
 ```
-python arithmetic.py N_DIGIT N_PAGES PAGE_OFFSET -o OUTPUT.TEX
 
-example) python arithmetic.py 2 5 1 -o Luna.tex
-# 2자리수 더하기 문제를 5페이지 생성하고 페이지 숫자는 1부터 시작. 결과물은 Luna.tex에 저장.
+## 사용법 (Usage)
+
+1. `config.yaml` 파일을 작성하여 설정을 정의합니다.
+2. 스크립트를 실행합니다:
+```bash
+python arithmetic_generator.py
 ```
+3. 생성된 `.tex` 파일을 LaTeX 편집기(Overleaf 등)에서 컴파일하여 PDF로 만듭니다.
 
-생성된 LaTeX 파일을 Overleaf 등에서 컴파일하면 PDF가 생성됨.
+## 설정 (Configuration)
+
+`config.yaml` 파일에서 생성할 문제지의 종류와 내용을 설정할 수 있습니다.
+
+```yaml
+generations:
+  - output: "luna.tex"        # 저장할 파일명
+    n_page: 10                # 생성할 페이지 수
+    page_offset: 51           # 시작 페이지 번호
+    questions_per_page: 10    # 페이지당 문제 수
+    problems:
+      - type: "addition"      # 문제 유형 (현재는 addition만 지원)
+        operands: [2, 1]      # 피연산자의 자릿수 (예: 2자리 + 1자리)
+
+  - output: "juna.tex"
+    n_page: 10
+    page_offset: 51
+    questions_per_page: 20
+    problems:
+      - type: "addition"
+        operands: [2, 2]      # 2자리 + 2자리
+```

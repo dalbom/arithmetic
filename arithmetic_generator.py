@@ -1,16 +1,46 @@
 import random
-import argparse
+import yaml
 
 
-def generate_latex(n_digit, n_page, page_offset):
+def generate_number(digits):
+    """Generate a random number with the specified number of digits."""
+    if digits < 1:
+        raise ValueError("Number of digits must be at least 1")
+    min_val = 10 ** (digits - 1)
+    max_val = 10**digits - 1
+    return random.randint(min_val, max_val)
+
+
+def generate_problem(problem_config):
+    """Generate a single arithmetic problem based on configuration."""
+    p_type = problem_config.get("type", "addition")
+    operands_digits = problem_config.get("operands", [1, 1])
+
+    nums = [generate_number(d) for d in operands_digits]
+
+    if p_type == "addition":
+        return f"{nums[0]} + {nums[1]} ="
+    elif p_type == "subtraction":
+        # Ensure positive result for subtraction if needed, or just simple subtraction
+        # For preschool, usually A - B where A >= B
+        # But for now, just implementing basic structure
+        return f"{nums[0]} - {nums[1]} ="
+    elif p_type == "multiplication":
+        return f"{nums[0]} \\times {nums[1]} ="
+    elif p_type == "division":
+        return f"{nums[0]} \\div {nums[1]} ="
+    
+    return f"{nums[0]} + {nums[1]} ="
+
+
+def generate_latex(config):
     """
-    Generate LaTeX code for arithmetic worksheets.
-
-    Parameters:
-    - n_digit: number of digits for each operand
-    - n_page: number of pages to generate
-    - page_offset: starting page number
+    Generate LaTeX code for arithmetic worksheets based on configuration.
     """
+    n_page = config["n_page"]
+    page_offset = config["page_offset"]
+    problems_config = config["problems"]
+    questions_per_page = config.get("questions_per_page", 20)
 
     # LaTeX document header
     latex_content = r"""\documentclass[12pt,a4paper]{article}
@@ -39,8 +69,6 @@ def generate_latex(n_digit, n_page, page_offset):
 
     # Generate pages
     for page_num in range(n_page):
-        current_page = page_offset + page_num
-
         # Date field at top
         latex_content += r"\noindent 날짜: \underline{\hspace{5cm}}" + "\n\n"
         latex_content += r"\vspace{1cm}" + "\n\n"
@@ -49,17 +77,14 @@ def generate_latex(n_digit, n_page, page_offset):
         latex_content += r"\begin{multicols}{2}" + "\n"
         latex_content += r"\Large" + "\n\n"
 
-        # Generate 10 problems
-        for i in range(1, 21):
-            # Generate random numbers with n_digit digits
-            min_val = 10 ** (n_digit - 1)
-            max_val = 10**n_digit - 1
-
-            A = random.randint(min_val, max_val)
-            B = random.randint(min_val, max_val)
+        # Generate problems per page
+        for i in range(1, questions_per_page + 1):
+            # Select a problem type randomly from the list
+            p_config = random.choice(problems_config)
+            problem_str = generate_problem(p_config)
 
             # Format: numbered problem with blank for answer
-            latex_content += f"\\noindent {i}. \\quad ${A} + {B} = $ \\underline{{\\hspace{{3cm}}}}\n\n"
+            latex_content += f"\\noindent {i}. \\quad ${problem_str}$ \\underline{{\\hspace{{3cm}}}}\n\n"
             latex_content += r"\vspace{0.8cm}" + "\n\n"
 
         # End 2-column layout
@@ -79,43 +104,35 @@ def generate_latex(n_digit, n_page, page_offset):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Generate arithmetic worksheets for preschool children"
-    )
-    parser.add_argument("n_digit", type=int, help="Number of digits for operands")
-    parser.add_argument("n_page", type=int, help="Number of pages to generate")
-    parser.add_argument("page_offset", type=int, help="Starting page number")
-    parser.add_argument(
-        "-o",
-        "--output",
-        type=str,
-        default="worksheet.tex",
-        help="Output filename (default: worksheet.tex)",
-    )
-
-    args = parser.parse_args()
-
-    # Validate inputs
-    if args.n_digit < 1:
-        print("Error: n_digit must be at least 1")
+    try:
+        with open("config.yaml", "r", encoding="utf-8") as f:
+            config_data = yaml.safe_load(f)
+    except FileNotFoundError:
+        print("Error: config.yaml not found.")
         return
-    if args.n_page < 1:
-        print("Error: n_page must be at least 1")
-        return
-    if args.page_offset < 1:
-        print("Error: page_offset must be at least 1")
+    except yaml.YAMLError as exc:
+        print(f"Error parsing config.yaml: {exc}")
         return
 
-    # Generate LaTeX content
-    latex_code = generate_latex(args.n_digit, args.n_page, args.page_offset)
+    if "generations" not in config_data:
+        print("Error: 'generations' key not found in config.yaml")
+        return
 
-    # Write to file
-    with open(args.output, "w", encoding="utf-8") as f:
-        f.write(latex_code)
-
-    print(f"LaTeX file generated: {args.output}")
-    print(f"Pages: {args.n_page} (starting from page {args.page_offset})")
-    print(f"Digit count: {args.n_digit}")
+    for gen_config in config_data["generations"]:
+        output_file = gen_config.get("output", "worksheet.tex")
+        print(f"Generating {output_file}...")
+        
+        try:
+            latex_code = generate_latex(gen_config)
+            
+            with open(output_file, "w", encoding="utf-8") as f:
+                f.write(latex_code)
+            print(f"  - Pages: {gen_config.get('n_page')}")
+            print(f"  - Start Page: {gen_config.get('page_offset')}")
+            print("  - Done.")
+            
+        except Exception as e:
+            print(f"Error generating {output_file}: {e}")
 
 
 if __name__ == "__main__":
