@@ -6,9 +6,7 @@
 
 필요한 패키지를 설치합니다:
 ```bash
-micromamba activate py313
-micromamba install pyyaml
-# 또는 pip install pyyaml
+pip install -r requirements.txt
 ```
 
 ## 사용법 (Usage)
@@ -29,16 +27,20 @@ generations:
   - output: "luna.tex"        # 저장할 파일명
     n_page: 10                # 생성할 페이지 수
     page_offset: 51           # 시작 페이지 번호
-    questions_per_page: 10    # 페이지당 문제 수
     problems:
-      - type: "addition"      # 문제 유형 (현재는 addition만 지원)
-        operands: [2, 1]      # 피연산자의 자릿수 (예: 2자리 + 1자리)
+      - type: "addition"      # 문제 유형
+        operands: [2, 1]      # 2자리 + 1자리
+        questions_per_page: 10 # 페이지당 이 유형의 문제 수
+      - type: "addition"
+        operands: [1, 1]      # 1자리 + 1자리
+        questions_per_page: 4  # 페이지당 이 유형의 문제 수 (총 14문제/페이지)
 
   - output: "juna.tex"
     n_page: 10
     page_offset: 51
-    questions_per_page: 20
+    # questions_per_page: 20  # (선택) 문제별 개수가 지정되지 않았을 때의 기본값
     problems:
       - type: "addition"
         operands: [2, 2]      # 2자리 + 2자리
+        questions_per_page: 20
 ```

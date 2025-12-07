@@ -40,7 +40,14 @@ def generate_latex(config):
     n_page = config["n_page"]
     page_offset = config["page_offset"]
     problems_config = config["problems"]
-    questions_per_page = config.get("questions_per_page", 20)
+    
+    # Check if questions_per_page varies by problem type
+    detailed_counts = any("questions_per_page" in p for p in problems_config)
+    
+    if detailed_counts:
+        total_questions = sum(p.get("questions_per_page", 0) for p in problems_config)
+    else:
+        total_questions = config.get("questions_per_page", 20)
 
     # LaTeX document header
     latex_content = r"""\documentclass[12pt,a4paper]{article}
@@ -69,6 +76,18 @@ def generate_latex(config):
 
     # Generate pages
     for page_num in range(n_page):
+        # Prepare list of problem configs for this page
+        current_page_problems_config = []
+        if detailed_counts:
+            for p_conf in problems_config:
+                count = p_conf.get("questions_per_page", 0)
+                current_page_problems_config.extend([p_conf] * count)
+            # Shuffle so different problem types are mixed
+            random.shuffle(current_page_problems_config)
+        else:
+            # Randomly sample from provided types for the whole page
+            current_page_problems_config = [random.choice(problems_config) for _ in range(total_questions)]
+
         # Date field at top
         latex_content += r"\noindent 날짜: \underline{\hspace{5cm}}" + "\n\n"
         latex_content += r"\vspace{1cm}" + "\n\n"
@@ -78,9 +97,7 @@ def generate_latex(config):
         latex_content += r"\Large" + "\n\n"
 
         # Generate problems per page
-        for i in range(1, questions_per_page + 1):
-            # Select a problem type randomly from the list
-            p_config = random.choice(problems_config)
+        for i, p_config in enumerate(current_page_problems_config, 1):
             problem_str = generate_problem(p_config)
 
             # Format: numbered problem with blank for answer
