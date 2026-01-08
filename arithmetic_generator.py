@@ -15,19 +15,27 @@ def generate_problem(problem_config):
     """Generate a single arithmetic problem based on configuration."""
     p_type = problem_config.get("type", "addition")
     operands_digits = problem_config.get("operands", [1, 1])
+    easymode = problem_config.get("easymode", False)
 
     nums = [generate_number(d) for d in operands_digits]
 
     if p_type == "addition":
         return f"{nums[0]} + {nums[1]} ="
     elif p_type == "subtraction":
-        # Ensure positive result for subtraction if needed, or just simple subtraction
-        # For preschool, usually A - B where A >= B
-        # But for now, just implementing basic structure
+        if easymode:
+            # Ensure A >= B for no negative result
+            a, b = max(nums[0], nums[1]), min(nums[0], nums[1])
+            return f"{a} - {b} ="
         return f"{nums[0]} - {nums[1]} ="
     elif p_type == "multiplication":
         return f"{nums[0]} \\times {nums[1]} ="
     elif p_type == "division":
+        if easymode:
+            # Generate A * B ÷ A to ensure integer result
+            divisor = nums[0]
+            quotient = nums[1]
+            dividend = divisor * quotient
+            return f"{dividend} \\div {divisor} ="
         return f"{nums[0]} \\div {nums[1]} ="
     
     return f"{nums[0]} + {nums[1]} ="

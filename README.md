@@ -44,3 +44,25 @@ generations:
         operands: [2, 2]      # 2자리 + 2자리
         questions_per_page: 20
 ```
+
+### Easy Mode (쉬운 모드)
+
+`subtraction`과 `division` 문제에는 `easymode` 옵션을 사용할 수 있습니다:
+
+- **subtraction (뺄셈)**: `easymode: true`로 설정하면 결과가 항상 0 이상이 됩니다 (음수 없음).
+- **division (나눗셈)**: `easymode: true`로 설정하면 결과가 항상 정수가 됩니다 (나머지 없음).
+
+```yaml
+problems:
+  - type: "subtraction"
+    operands: [2, 1]
+    questions_per_page: 10
+    easymode: true          # 음수 결과 없음 (항상 A >= B)
+
+  - type: "division"
+    operands: [1, 1]
+    questions_per_page: 10
+    easymode: true          # 정수 결과만 (나머지 없음)
+```
+
+`easymode` 옵션이 없거나 `false`로 설정된 경우, 피연산자는 무작위로 선택됩니다.

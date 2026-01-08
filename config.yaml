@@ -1,27 +1,39 @@
 generations:
   - output: "luna.tex"
     n_page: 10
-    page_offset: 61
+    page_offset: 81
     problems:
       - type: "addition"
-        operands: [2, 1] 
-        questions_per_page: 10
+        operands: [2, 2] 
+        questions_per_page: 1
       - type: "addition"
+        operands: [2, 1]
+        questions_per_page: 9
+      - type: "subtraction"
         operands: [1, 1]
-        questions_per_page: 4
+        questions_per_page: 10
+        easymode: true
 
   - output: "juna.tex"
     n_page: 10
-    page_offset: 61
+    page_offset: 81
     problems:
       - type: "addition"
         operands: [2, 2]
-        questions_per_page: 20
+        questions_per_page: 15
+      - type: "subtraction"
+        operands: [2, 2]
+        questions_per_page: 5
+        easymode: true
 
   - output: "bom.tex"
     n_page: 10
-    page_offset: 61
+    page_offset: 81
     problems:
       - type: "addition"
         operands: [3, 3]
-        questions_per_page: 20
+        questions_per_page: 15
+      - type: "subtraction"
+        operands: [3, 3]
+        questions_per_page: 5
+        easymode: true
