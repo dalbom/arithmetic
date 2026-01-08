@@ -1,17 +1,15 @@
 """
 Arithmetic Worksheet Generator - Web Interface
-A child-friendly web interface for generating math worksheets.
+A child-friendly web interface for generating math worksheets using TeXLive.net API.
 """
 
 import streamlit as st
-import subprocess
-import shutil
+import requests
+import zipfile
 import tempfile
 import os
-import platform
-import zipfile
+import re
 from io import BytesIO
-from pathlib import Path
 from arithmetic_generator import generate_latex
 
 
@@ -31,20 +29,8 @@ TRANSLATIONS = {
         # Sidebar
         "language_label": "🌐 Language",
         "pdf_options": "⚙️ PDF Options",
-        "available_methods": "📋 Available Methods:",
-        "local_latex_found": "✅ Local LaTeX found!",
-        "local_latex_not_found": "❌ Local LaTeX not found",
-        "docker_available": "✅ Docker is available!",
-        "docker_not_running": "ℹ️ Docker not running",
         "generate_pdf_checkbox": "📄 Generate PDF files",
-        "generate_pdf_help": "Convert .tex files to PDF",
-        "choose_pdf_method": "Choose PDF method:",
-        "local_latex_option": "🖥️ Local LaTeX (faster)",
-        "docker_option": "🐳 Docker Container",
-        "using_local_latex": "Using local LaTeX",
-        "docker_checkbox": "🐳 Generate PDF using Docker container",
-        "docker_checkbox_help": "Uses leplusorg/latex Docker image",
-        "no_pdf_method": "No PDF generation method available. Install LaTeX or Docker.",
+        "generate_pdf_help": "Convert .tex files to PDF using TeXLive.net API",
         
         # Worksheet configuration
         "configure_worksheets": "📚 Configure Your Worksheets",
@@ -84,10 +70,8 @@ TRANSLATIONS = {
         
         # Progress messages
         "generating": "📝 Generating",
-        "converting_to_pdf": "📄 Converting {name} to PDF...",
-        "downloading_container": "🐳 Downloading PDF container... This may take a few minutes on first use!",
+        "converting_to_pdf": "📄 Converting {name} to PDF (via TeXLive.net)...",
         "pdf_generated": "✅ {name} PDF generated!",
-        "pdf_not_found": "⚠️ PDF for {name} not found",
         "pdf_failed": "❌ PDF generation failed for {name}: {error}",
         "error_generating": "❌ Error generating {name}: {error}",
         "all_done": "✨ All done!",
@@ -97,6 +81,10 @@ TRANSLATIONS = {
         "download_file": "⬇️ Download {filename}",
         "download_all_zip": "📦 Download All (ZIP)",
         "individual_files": "**Individual files:**",
+        
+        # Footer
+        # Footer
+        "footer_text": "PDF compilation service provided by <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>"
     },
     "ko": {
         # Page title
@@ -109,20 +97,8 @@ TRANSLATIONS = {
         # Sidebar
         "language_label": "🌐 언어",
         "pdf_options": "⚙️ PDF 옵션",
-        "available_methods": "📋 사용 가능한 방법:",
-        "local_latex_found": "✅ 로컬 LaTeX 발견!",
-        "local_latex_not_found": "❌ 로컬 LaTeX 없음",
-        "docker_available": "✅ Docker 사용 가능!",
-        "docker_not_running": "ℹ️ Docker 실행 안됨",
         "generate_pdf_checkbox": "📄 PDF 파일 생성",
-        "generate_pdf_help": ".tex 파일을 PDF로 변환",
-        "choose_pdf_method": "PDF 생성 방법 선택:",
-        "local_latex_option": "🖥️ 로컬 LaTeX (더 빠름)",
-        "docker_option": "🐳 Docker 컨테이너",
-        "using_local_latex": "로컬 LaTeX 사용 중",
-        "docker_checkbox": "🐳 Docker 컨테이너로 PDF 생성",
-        "docker_checkbox_help": "leplusorg/latex Docker 이미지 사용",
-        "no_pdf_method": "PDF 생성 방법이 없습니다. LaTeX 또는 Docker를 설치하세요.",
+        "generate_pdf_help": "TeXLive.net API를 사용하여 .tex 파일을 PDF로 변환합니다.",
         
         # Worksheet configuration
         "configure_worksheets": "📚 문제지 설정",
@@ -162,10 +138,8 @@ TRANSLATIONS = {
         
         # Progress messages
         "generating": "📝 생성 중",
-        "converting_to_pdf": "📄 {name}을(를) PDF로 변환 중...",
-        "downloading_container": "🐳 PDF 컨테이너 다운로드 중... 처음 사용 시 몇 분 걸릴 수 있어요!",
+        "converting_to_pdf": "📄 {name}을(를) PDF로 변환 중 (TeXLive.net 서비스 이용)...",
         "pdf_generated": "✅ {name} PDF 생성 완료!",
-        "pdf_not_found": "⚠️ {name}의 PDF를 찾을 수 없음",
         "pdf_failed": "❌ {name} PDF 생성 실패: {error}",
         "error_generating": "❌ {name} 생성 오류: {error}",
         "all_done": "✨ 모두 완료!",
@@ -175,6 +149,10 @@ TRANSLATIONS = {
         "download_file": "⬇️ {filename} 다운로드",
         "download_all_zip": "📦 전체 다운로드 (ZIP)",
         "individual_files": "**개별 파일:**",
+        
+        # Footer
+        # Footer
+        "footer_text": "PDF 컴파일 서비스는 <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>에서 제공합니다."
     }
 }
 
@@ -200,20 +178,6 @@ def get_problem_type_display(problem_type):
         "division": t("division")
     }
     return type_map.get(problem_type, problem_type)
-
-
-def get_problem_type_value(display_name):
-    """Get problem type value from display name."""
-    for lang_data in TRANSLATIONS.values():
-        if display_name == lang_data.get("addition"):
-            return "addition"
-        elif display_name == lang_data.get("subtraction"):
-            return "subtraction"
-        elif display_name == lang_data.get("multiplication"):
-            return "multiplication"
-        elif display_name == lang_data.get("division"):
-            return "division"
-    return "addition"
 
 
 # ============================================================================
@@ -296,6 +260,18 @@ st.markdown("""
         color: #1976D2;
         margin-top: 1rem;
     }
+    
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: transparent;
+        color: #555;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -304,143 +280,23 @@ st.markdown("""
 # UTILITY FUNCTIONS
 # ============================================================================
 
-def check_local_latex():
-    """Check if local LaTeX (pdflatex) is available."""
-    # Check common locations on Windows
-    if platform.system() == "Windows":
-        common_paths = [
-            r"C:\Program Files\MiKTeX\miktex\bin\x64\pdflatex.exe",
-            r"C:\Program Files (x86)\MiKTeX\miktex\bin\pdflatex.exe",
-            r"C:\texlive\2024\bin\windows\pdflatex.exe",
-            r"C:\texlive\2023\bin\windows\pdflatex.exe",
-            r"C:\texlive\2022\bin\windows\pdflatex.exe",
-        ]
-        for path in common_paths:
-            if os.path.exists(path):
-                return path
-    
-    # Check if pdflatex is in PATH
-    pdflatex_path = shutil.which("pdflatex")
-    if pdflatex_path:
-        return pdflatex_path
-    
-    return None
-
-
-def check_docker_available():
-    """Check if Docker is available and running."""
+def compile_tex_with_texlivenet(tex_content):
+    """Compile LaTeX content to PDF using TeXLive.net API."""
     try:
-        result = subprocess.run(
-            ["docker", "info"],
-            capture_output=True,
-            text=True,
-            timeout=10
+        response = requests.post(
+            "https://texlive.net/cgi-bin/latexcgi",
+            files={
+                "filename[]": (None, "document.tex"),
+                "filecontents[]": (None, tex_content),
+                "return": (None, "pdf"),
+            },
+            timeout=60
         )
-        return result.returncode == 0
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        return False
-
-
-def check_docker_image_exists(image_name):
-    """Check if a Docker image already exists locally."""
-    try:
-        result = subprocess.run(
-            ["docker", "images", "-q", image_name],
-            capture_output=True,
-            text=True,
-            timeout=10
-        )
-        return bool(result.stdout.strip())
-    except (subprocess.TimeoutExpired, FileNotFoundError):
-        return False
-
-
-def compile_tex_with_local(tex_path, output_dir):
-    """Compile a .tex file to PDF using local pdflatex."""
-    pdflatex = check_local_latex()
-    if not pdflatex:
-        return False, "Local LaTeX not found"
-    
-    try:
-        # Run pdflatex twice for proper page numbering
-        result = None
-        for _ in range(2):
-            result = subprocess.run(
-                [pdflatex, "-interaction=nonstopmode", "-output-directory", output_dir, tex_path],
-                capture_output=True,
-                text=True,
-                timeout=120,
-                cwd=output_dir
-            )
         
-        pdf_path = tex_path.replace('.tex', '.pdf')
-        if os.path.exists(pdf_path):
-            return True, pdf_path
+        if response.status_code == 200 and response.headers.get('content-type') == 'application/pdf':
+            return True, response.content
         else:
-            error_msg = "PDF not generated."
-            if result:
-                error_msg += f" LaTeX output:\n{result.stdout}\n{result.stderr}"
-            return False, error_msg
-    except subprocess.TimeoutExpired:
-        return False, "LaTeX compilation timed out"
-    except Exception as e:
-        return False, str(e)
-
-
-def compile_tex_with_docker(tex_path, output_dir, status_callback=None):
-    """Compile a .tex file to PDF using Docker container."""
-    if not check_docker_available():
-        return False, "Docker is not available or not running"
-    
-    # Convert Windows path to Docker-compatible path
-    if platform.system() == "Windows":
-        # Convert C:\path\to\dir to /c/path/to/dir for Docker
-        docker_output_dir = output_dir.replace("\\", "/")
-        if len(docker_output_dir) > 1 and docker_output_dir[1] == ":":
-            docker_output_dir = "/" + docker_output_dir[0].lower() + docker_output_dir[2:]
-    else:
-        docker_output_dir = output_dir
-    
-    tex_filename = os.path.basename(tex_path)
-    image_name = "leplusorg/latex"
-    
-    try:
-        # Check if image needs to be downloaded
-        if not check_docker_image_exists(image_name):
-            if status_callback:
-                status_callback(t("downloading_container"))
-            subprocess.run(
-                ["docker", "pull", image_name],
-                capture_output=True,
-                timeout=600  # 10 minutes for download
-            )
-        
-        # Run pdflatex in container - run twice for proper numbering
-        result = None
-        for _ in range(2):
-            result = subprocess.run(
-                [
-                    "docker", "run", "--rm",
-                    "-v", f"{docker_output_dir}:/data",
-                    image_name,
-                    "pdflatex", "-interaction=nonstopmode", "-output-directory=/data", f"/data/{tex_filename}"
-                ],
-                capture_output=True,
-                text=True,
-                timeout=180,
-                cwd=output_dir
-            )
-        
-        pdf_path = tex_path.replace('.tex', '.pdf')
-        if os.path.exists(pdf_path):
-            return True, pdf_path
-        else:
-            error_msg = "PDF not generated."
-            if result:
-                error_msg += f" Docker output:\n{result.stdout}\n{result.stderr}"
-            return False, error_msg
-    except subprocess.TimeoutExpired:
-        return False, "Docker compilation timed out"
+            return False, response.text[:500] if response.text else "Unknown error from API"
     except Exception as e:
         return False, str(e)
 
@@ -489,53 +345,11 @@ def main():
         
         st.markdown(f"## {t('pdf_options')}")
         
-        # Check available options
-        local_latex = check_local_latex()
-        docker_available = check_docker_available()
-        
-        st.markdown(f"### {t('available_methods')}")
-        
-        if local_latex:
-            st.success(t("local_latex_found"))
-        else:
-            st.warning(t("local_latex_not_found"))
-        
-        if docker_available:
-            st.success(t("docker_available"))
-        else:
-            st.info(t("docker_not_running"))
-        
-        st.markdown("---")
-        
         generate_pdf = st.checkbox(
             t("generate_pdf_checkbox"),
-            value=False,
+            value=True,
             help=t("generate_pdf_help")
         )
-        
-        if generate_pdf:
-            if local_latex and docker_available:
-                pdf_method = st.radio(
-                    t("choose_pdf_method"),
-                    [t("local_latex_option"), t("docker_option")],
-                    index=0
-                )
-                use_docker = t("docker_option") in pdf_method
-            elif local_latex:
-                st.info(t("using_local_latex"))
-                use_docker = False
-            elif docker_available:
-                use_docker = st.checkbox(
-                    t("docker_checkbox"),
-                    value=True,
-                    help=t("docker_checkbox_help")
-                )
-            else:
-                st.error(t("no_pdf_method"))
-                generate_pdf = False
-                use_docker = False
-        else:
-            use_docker = False
     
     # Header with fun emojis
     st.markdown(f'<h1 class="main-header">{t("main_header")}</h1>', unsafe_allow_html=True)
@@ -575,7 +389,14 @@ def main():
         )
     
     if generate_button:
-        generate_worksheets(generate_pdf, use_docker if generate_pdf else False)
+        generate_worksheets(generate_pdf)
+    
+    # Footer
+    st.markdown(f"""
+        <div class="footer">
+            {t('footer_text')}
+        </div>
+    """, unsafe_allow_html=True)
 
 
 def create_default_worksheet(name):
@@ -598,13 +419,12 @@ def create_default_worksheet(name):
 def name_to_filename(name):
     """Convert worksheet name to a valid filename."""
     # Replace spaces and special characters with underscores
-    import re
     filename = re.sub(r'[^\w\s-]', '', name)  # Remove special chars except spaces and hyphens
     filename = re.sub(r'[\s]+', '_', filename)  # Replace spaces with underscores
     filename = filename.strip('_').lower()
     if not filename:
         filename = "worksheet"
-    return filename + '.tex'
+    return filename
 
 
 def render_worksheet_config(idx, worksheet):
@@ -668,8 +488,6 @@ def render_worksheet_config(idx, worksheet):
                 t("multiplication"): "multiplication",
                 t("division"): "division"
             }
-            # Find current display name
-            current_display = get_problem_type_display(problem['type'])
             
             selected_type = st.selectbox(
                 t("type_label"),
@@ -742,135 +560,108 @@ def render_worksheet_config(idx, worksheet):
             st.rerun()
 
 
-def generate_worksheets(generate_pdf, use_docker):
+def generate_worksheets(generate_pdf):
     """Generate all configured worksheets."""
     if not st.session_state.worksheets:
         st.error(t("no_worksheets_error"))
         return
     
-    # Create temporary directory for output
-    with tempfile.TemporaryDirectory() as tmpdir:
-        generated_files = {}
+    generated_files = {}
+    
+    progress_bar = st.progress(0)
+    status_text = st.empty()
+    
+    total_steps = len(st.session_state.worksheets) * (2 if generate_pdf else 1)
+    current_step = 0
+    
+    for worksheet in st.session_state.worksheets:
+        status_text.text(f"{t('generating')} {worksheet['name']}...")
         
-        progress_bar = st.progress(0)
-        status_text = st.empty()
+        # Build config for generator
+        config = {
+            'n_page': worksheet['n_page'],
+            'page_offset': worksheet['page_offset'],
+            'problems': worksheet['problems']
+        }
         
-        total_steps = len(st.session_state.worksheets) * (2 if generate_pdf else 1)
-        current_step = 0
-        
-        for worksheet in st.session_state.worksheets:
-            status_text.text(f"{t('generating')} {worksheet['name']}...")
+        try:
+            # Generate LaTeX
+            latex_content = generate_latex(config)
+            base_filename = name_to_filename(worksheet['name'])
+            tex_filename = base_filename + '.tex'
             
-            # Build config for generator
-            config = {
-                'n_page': worksheet['n_page'],
-                'page_offset': worksheet['page_offset'],
-                'problems': worksheet['problems']
-            }
+            generated_files[tex_filename] = latex_content
+            current_step += 1
+            progress_bar.progress(current_step / total_steps)
             
-            try:
-                # Generate LaTeX
-                latex_content = generate_latex(config)
-                tex_filename = name_to_filename(worksheet['name'])
-                tex_path = os.path.join(tmpdir, tex_filename)
+            # Generate PDF if requested
+            if generate_pdf:
+                status_text.text(t("converting_to_pdf", name=worksheet['name']))
                 
-                with open(tex_path, 'w', encoding='utf-8') as f:
-                    f.write(latex_content)
+                success, result = compile_tex_with_texlivenet(latex_content)
                 
-                generated_files[tex_filename] = latex_content
+                if success:
+                    pdf_filename = base_filename + '.pdf'
+                    generated_files[pdf_filename] = result
+                    st.success(t("pdf_generated", name=worksheet['name']))
+                else:
+                    st.error(t("pdf_failed", name=worksheet['name'], error=result))
+                
                 current_step += 1
                 progress_bar.progress(current_step / total_steps)
-                
-                # Generate PDF if requested
-                if generate_pdf:
-                    status_text.text(t("converting_to_pdf", name=worksheet['name']))
-                    
-                    def update_status(msg):
-                        status_text.text(msg)
-                    
-                    if use_docker:
-                        success, result = compile_tex_with_docker(tex_path, tmpdir, status_callback=update_status)
-                    else:
-                        success, result = compile_tex_with_local(tex_path, tmpdir)
-                    
-                    if success:
-                        pdf_filename = tex_filename.replace('.tex', '.pdf')
-                        pdf_path = os.path.join(tmpdir, pdf_filename)
-                        if os.path.exists(pdf_path):
-                            with open(pdf_path, 'rb') as f:
-                                generated_files[pdf_filename] = f.read()
-                            st.success(t("pdf_generated", name=worksheet['name']))
-                        else:
-                            st.warning(t("pdf_not_found", name=worksheet['name']))
-                    else:
-                        st.error(t("pdf_failed", name=worksheet['name'], error=result))
-                    
-                    current_step += 1
-                    progress_bar.progress(current_step / total_steps)
-                
-            except Exception as e:
-                st.error(t("error_generating", name=worksheet['name'], error=str(e)))
-        
-        progress_bar.progress(1.0)
-        status_text.text(t("all_done"))
-        
-        # Create download buttons
-        st.markdown(f"### {t('download_header')}")
-        
-        if len(generated_files) == 1:
-            # Single file download
-            filename, content = list(generated_files.items())[0]
-            if isinstance(content, bytes):
-                st.download_button(
-                    label=t("download_file", filename=filename),
-                    data=content,
-                    file_name=filename,
-                    mime="application/pdf"
-                )
-            else:
-                st.download_button(
-                    label=t("download_file", filename=filename),
-                    data=content,
-                    file_name=filename,
-                    mime="text/plain"
-                )
-        else:
-            # Multiple files - offer individual downloads and zip
-            col1, col2 = st.columns(2)
             
-            with col1:
-                # Create zip file
-                zip_buffer = create_zip_from_files(generated_files)
-                st.download_button(
-                    label=t("download_all_zip"),
-                    data=zip_buffer,
-                    file_name="math_worksheets.zip",
-                    mime="application/zip"
-                )
-            
-            with col2:
-                st.markdown(t("individual_files"))
-            
-            # Individual file downloads
-            for filename, content in generated_files.items():
-                if isinstance(content, bytes):
-                    st.download_button(
-                        label=f"⬇️ {filename}",
-                        data=content,
-                        file_name=filename,
-                        mime="application/pdf" if filename.endswith('.pdf') else "text/plain",
-                        key=f"dl_{filename}"
-                    )
-                else:
-                    st.download_button(
-                        label=f"⬇️ {filename}",
-                        data=content,
-                        file_name=filename,
-                        mime="text/plain",
-                        key=f"dl_{filename}"
-                    )
+        except Exception as e:
+            st.error(t("error_generating", name=worksheet['name'], error=str(e)))
+            # Increment step anyway to keep progress bar moving
+            current_step += (2 if generate_pdf else 1)
+            progress_bar.progress(current_step / total_steps)
+    
+    progress_bar.progress(1.0)
+    status_text.text(t("all_done"))
+    
+    # Create download buttons
+    st.markdown("---")
+    st.markdown(f"### {t('download_header')}")
+    
+    if len(generated_files) == 1:
+        # Single file download
+        filename, content = list(generated_files.items())[0]
+        mime = "application/pdf" if filename.endswith('.pdf') else "text/plain"
+        st.download_button(
+            label=t("download_file", filename=filename),
+            data=content,
+            file_name=filename,
+            mime=mime
+        )
+    else:
+        # Multiple files - offer individual downloads and zip
+        col1, col2 = st.columns(2)
         
-        st.balloons()
+        with col1:
+            # Create zip file
+            zip_buffer = create_zip_from_files(generated_files)
+            st.download_button(
+                label=t("download_all_zip"),
+                data=zip_buffer,
+                file_name="math_worksheets.zip",
+                mime="application/zip"
+            )
+        
+        with col2:
+            st.markdown(t("individual_files"))
+        
+        # Individual file downloads
+        for filename, content in generated_files.items():
+            mime = "application/pdf" if filename.endswith('.pdf') else "text/plain"
+            st.download_button(
+                label=f"⬇️ {filename}",
+                data=content,
+                file_name=filename,
+                mime=mime,
+                key=f"dl_{filename}"
+            )
+    
+    st.balloons()
 
 
 if __name__ == "__main__":
