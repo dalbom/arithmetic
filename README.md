@@ -1,4 +1,4 @@
-# 간단한 더하기 문제 생성기 (Arithmetic Worksheet Generator)
+# 간단한 산수 문제 생성기 (Arithmetic Worksheet Generator)
 
 유치원생/초등학생을 위한 산수 연습 문제지(LaTeX)를 생성하는 도구입니다.
 
