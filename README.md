@@ -11,6 +11,30 @@ pip install -r requirements.txt
 
 ## 사용법 (Usage)
 
+### 방법 1: 웹 인터페이스 (권장)
+
+아이들도 쉽게 사용할 수 있는 웹 인터페이스를 제공합니다:
+
+```bash
+streamlit run web_app.py
+```
+
+웹 브라우저가 자동으로 열리며, 다음 기능을 사용할 수 있습니다:
+- 여러 개의 문제지를 동시에 생성
+- 각 문제지마다 다른 설정 적용 (이름, 페이지 수, 문제 유형 등)
+- PDF 자동 생성 (로컬 LaTeX 또는 Docker 컨테이너 사용)
+- ZIP 파일로 일괄 다운로드
+
+#### PDF 생성 옵션
+
+웹 인터페이스에서 PDF 생성을 위해 두 가지 방법을 지원합니다:
+
+1. **로컬 LaTeX**: MikTeX 또는 TeX Live가 설치되어 있으면 자동으로 감지됩니다.
+2. **Docker 컨테이너**: Docker가 설치되어 있으면 `leplusorg/latex` 이미지를 사용하여 PDF를 생성합니다.
+   - "Generate PDF using Docker container" 체크박스를 선택하세요.
+
+### 방법 2: 커맨드라인
+
 1. `config.yaml` 파일을 작성하여 설정을 정의합니다.
 2. 스크립트를 실행합니다:
 ```bash
