@@ -98,11 +98,25 @@ def generate_latex(config):
 
         # Date field at top
         latex_content += r"\noindent 날짜: \underline{\hspace{5cm}}" + "\n\n"
-        latex_content += r"\vspace{1cm}" + "\n\n"
+        latex_content += r"\vspace{0.5cm}" + "\n\n"
 
-        # Start 2-column layout with larger font
+        # Determine font size and spacing based on total questions to prevent overflow
+        if total_questions <= 20:
+            font_size = r"\Large"
+            v_space = r"0.8cm"
+        elif total_questions <= 30:
+            font_size = r"\large"
+            v_space = r"0.5cm"
+        elif total_questions <= 40:
+            font_size = r"\normalsize"
+            v_space = r"0.3cm"
+        else:
+            font_size = r"\small"
+            v_space = r"0.2cm"
+
+        # Start 2-column layout
         latex_content += r"\begin{multicols}{2}" + "\n"
-        latex_content += r"\Large" + "\n\n"
+        latex_content += f"{font_size}\n\n"
 
         # Generate problems per page
         for i, p_config in enumerate(current_page_problems_config, 1):
@@ -110,7 +124,7 @@ def generate_latex(config):
 
             # Format: numbered problem with blank for answer
             latex_content += f"\\noindent {i}. \\quad ${problem_str}$ \\underline{{\\hspace{{3cm}}}}\n\n"
-            latex_content += r"\vspace{0.8cm}" + "\n\n"
+            latex_content += f"\\vspace{{{v_space}}}\n\n"
 
         # End 2-column layout
         latex_content += r"\end{multicols}" + "\n\n"
