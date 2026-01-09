@@ -84,7 +84,7 @@ TRANSLATIONS = {
         
         # Footer
         # Footer
-        "footer_text": "PDF compilation service provided by <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>"
+        "footer_text": "PDF compilation service provided by <a href='https://texlive.net/' target='_blank'>TeXLive.net</a> | Made by <a href='https://sites.google.com/view/haebomme/home' target='_blank'>dalbom</a>"
     },
     "ko": {
         # Page title
@@ -152,7 +152,7 @@ TRANSLATIONS = {
         
         # Footer
         # Footer
-        "footer_text": "PDF 컴파일 서비스는 <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>에서 제공합니다."
+        "footer_text": "PDF 컴파일 서비스는 <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>에서 제공합니다. | Made by <a href='https://sites.google.com/view/haebomme/home' target='_blank'>dalbom</a>"
     }
 }
 
