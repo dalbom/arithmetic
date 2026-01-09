@@ -153,6 +153,73 @@ TRANSLATIONS = {
         # Footer
         # Footer
         "footer_text": "PDF 컴파일 서비스는 <a href='https://texlive.net/' target='_blank'>TeXLive.net</a>에서 제공합니다. | Made by <a href='https://sites.google.com/view/haebomme/home' target='_blank'>dalbom</a>"
+    },
+    "de": {
+        # Page title
+        "page_title": "Mathe-Arbeitsblatt-Generator",
+        
+        # Headers
+        "main_header": "🧮 Mathe-Arbeitsblatt-Generator 📝",
+        "sub_header": "Erstellen Sie tolle Mathe-Übungsblätter für Kinder! 🎉",
+        
+        # Sidebar
+        "language_label": "🌐 Sprache",
+        "pdf_options": "⚙️ PDF-Optionen",
+        "generate_pdf_checkbox": "📄 PDF-Dateien generieren",
+        "generate_pdf_help": "Konvertieren Sie .tex-Dateien in PDF mit der TeXLive.net-API",
+        
+        # Worksheet configuration
+        "configure_worksheets": "📚 Konfigurieren Sie Ihre Arbeitsblätter",
+        "configure_worksheets_desc": "Fügen Sie Arbeitsblätter für verschiedene Kinder oder Schwierigkeitsgrade hinzu!",
+        "add_worksheet": "➕ Arbeitsblatt hinzufügen",
+        "worksheet_name_label": "📛 Name des Kindes oder Titel des Arbeitsblatts",
+        "worksheet_name_help": "Geben Sie diesem Arbeitsblatt einen lustigen Namen! (Dies wird auch der Dateiname sein)",
+        "num_pages_label": "📄 Anzahl der Seiten",
+        "num_pages_help": "Wie viele Seiten Übung?",
+        "start_page_label": "🔢 Startseitennummer",
+        "start_page_help": "Welche Nummer soll die erste Seite zeigen?",
+        
+        # Problem types
+        "problem_types_header": "🎲 Aufgabentypen",
+        "problem_types_desc": "Fügen Sie diesem Arbeitsblatt verschiedene Arten von Matheaufgaben hinzu!",
+        "add_problem_type": "➕ Aufgabentyp hinzufügen",
+        "problem_type_n": "Aufgabentyp",
+        "type_label": "Typ",
+        "addition": "➕ Addition",
+        "subtraction": "➖ Subtraktion",
+        "multiplication": "✖️ Multiplication",
+        "division": "➗ Division",
+        "first_digits_label": "Stellen der ersten Zahl",
+        "first_digits_help": "Wie viele Stellen hat die erste Zahl?",
+        "second_digits_label": "Stellen der zweiten Zahl",
+        "second_digits_help": "Wie viele Stellen hat die zweite Zahl?",
+        "questions_per_page_label": "Aufgaben pro Seite",
+        "questions_per_page_help": "Wie viele von diesem Typ pro Seite?",
+        "easy_mode": "🌟 Einfacher Modus",
+        "easy_mode_help": "Keine negativen Ergebnisse (Subtraktion) oder keine Reste (Division)",
+        "delete_worksheet": "🗑️ Dieses Arbeitsblatt löschen",
+        
+        # Generate section
+        "generate_header": "🎯 Arbeitsblätter generieren",
+        "generate_button": "🚀 Alle Arbeitsblätter generieren!",
+        "no_worksheets_error": "Keine Arbeitsblätter konfiguriert!",
+        
+        # Progress messages
+        "generating": "📝 Generiere",
+        "converting_to_pdf": "📄 Konvertiere {name} in PDF (über TeXLive.net)...",
+        "pdf_generated": "✅ {name} PDF generiert!",
+        "pdf_failed": "❌ PDF-Generierung fehlgeschlagen für {name}: {error}",
+        "error_generating": "❌ Fehler beim Generieren von {name}: {error}",
+        "all_done": "✨ Alles fertig!",
+        
+        # Download section
+        "download_header": "📥 Laden Sie Ihre Dateien herunter",
+        "download_file": "⬇️ {filename} herunterladen",
+        "download_all_zip": "📦 Alles herunterladen (ZIP)",
+        "individual_files": "**Einzelne Dateien:**",
+        
+        # Footer
+        "footer_text": "PDF-Kompilierungsservice bereitgestellt von <a href='https://texlive.net/' target='_blank'>TeXLive.net</a> | Erstellt von <a href='https://sites.google.com/view/haebomme/home' target='_blank'>dalbom</a>"
     }
 }
 
@@ -321,14 +388,17 @@ def create_zip_from_files(file_dict):
 def main():
     # Initialize language in session state
     if 'language' not in st.session_state:
-        st.session_state.language = 'en'
+        st.session_state.language = 'ko'
     
     # Sidebar with language and PDF options
     with st.sidebar:
         # Language selection at the top
         st.markdown(f"## {t('language_label')}")
-        language_options = {"English": "en", "한국어": "ko"}
-        current_lang_display = "English" if st.session_state.language == "en" else "한국어"
+        language_options = {"한국어": "ko", "English": "en", "Deutsch": "de"}
+        
+        # Invert the dictionary to get the display name for the current language code
+        code_to_display = {v: k for k, v in language_options.items()}
+        current_lang_display = code_to_display.get(st.session_state.language, "한국어")
         
         selected_lang = st.selectbox(
             t("language_label"),
