@@ -413,16 +413,6 @@ def main():
         if language_options[selected_lang] != st.session_state.language:
             st.session_state.language = language_options[selected_lang]
             st.rerun()
-        
-        st.markdown("---")
-        
-        st.markdown(f"## {t('pdf_options')}")
-        
-        generate_pdf = st.checkbox(
-            t("generate_pdf_checkbox"),
-            value=True,
-            help=t("generate_pdf_help")
-        )
     
     # Header with fun emojis
     st.markdown(f'<h1 class="main-header">{t("main_header")}</h1>', unsafe_allow_html=True)
@@ -464,7 +454,7 @@ def main():
         )
     
     if generate_button:
-        generate_worksheets(generate_pdf)
+        generate_worksheets()
     
     # Render downloads if they exist
     if st.session_state.generated_files:
@@ -639,8 +629,9 @@ def render_worksheet_config(idx, worksheet):
             st.rerun()
 
 
-def generate_worksheets(generate_pdf):
+def generate_worksheets():
     """Generate all configured worksheets."""
+    generate_pdf = True # Always generate PDF in web interface
     if not st.session_state.worksheets:
         st.error(t("no_worksheets_error"))
         return
@@ -734,8 +725,9 @@ def render_downloads():
         col1, col2 = st.columns(2)
         
         with col1:
-            # Create zip file
-            zip_buffer = create_zip_from_files(generated_files)
+            # Create zip file excluding .tex files
+            pdf_only_files = {k: v for k, v in generated_files.items() if k.endswith('.pdf')}
+            zip_buffer = create_zip_from_files(pdf_only_files)
             st.download_button(
                 label=t("download_all_zip"),
                 data=zip_buffer,
@@ -745,17 +737,19 @@ def render_downloads():
         
         with col2:
             st.markdown(t("individual_files"))
-        
-        # Individual file downloads
-        for filename, content in generated_files.items():
-            mime = "application/pdf" if filename.endswith('.pdf') else "text/plain"
-            st.download_button(
-                label=f"⬇️ {filename}",
-                data=content,
-                file_name=filename,
-                mime=mime,
-                key=f"dl_{filename}"
-            )
+            # Individual file downloads (PDF only)
+            for filename, content in generated_files.items():
+                if filename.endswith('.tex'):
+                    continue
+                
+                mime = "application/pdf"
+                st.download_button(
+                    label=f"⬇️ {filename}",
+                    data=content,
+                    file_name=filename,
+                    mime=mime,
+                    key=f"dl_{filename}"
+                )
 
 
 if __name__ == "__main__":
