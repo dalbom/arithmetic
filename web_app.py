@@ -67,6 +67,7 @@ TRANSLATIONS = {
         "generate_header": "🎯 Generate Worksheets",
         "generate_button": "🚀 Generate All Worksheets!",
         "no_worksheets_error": "No worksheets configured!",
+        "max_questions_error": "Maximum 50 questions per page allowed in '{name}'! (Current total: {total})",
         
         # Progress messages
         "generating": "📝 Generating",
@@ -135,6 +136,7 @@ TRANSLATIONS = {
         "generate_header": "🎯 문제지 생성",
         "generate_button": "🚀 모든 문제지 생성!",
         "no_worksheets_error": "설정된 문제지가 없습니다!",
+        "max_questions_error": "'{name}' 문제지의 페이지당 문제가 너무 많습니다! 최대 50개까지 가능합니다. (현재 합계: {total})",
         
         # Progress messages
         "generating": "📝 생성 중",
@@ -203,6 +205,7 @@ TRANSLATIONS = {
         "generate_header": "🎯 Arbeitsblätter generieren",
         "generate_button": "🚀 Alle Arbeitsblätter generieren!",
         "no_worksheets_error": "Keine Arbeitsblätter konfiguriert!",
+        "max_questions_error": "Maximal 50 Aufgaben pro Seite in '{name}' erlaubt! (Aktuelle Gesamtzahl: {total})",
         
         # Progress messages
         "generating": "📝 Generiere",
@@ -425,9 +428,11 @@ def main():
     st.markdown(f'<h1 class="main-header">{t("main_header")}</h1>', unsafe_allow_html=True)
     st.markdown(f'<p class="sub-header">{t("sub_header")}</p>', unsafe_allow_html=True)
     
-    # Initialize session state for worksheets
+    # Initialize session state for worksheets and downloads
     if 'worksheets' not in st.session_state:
         st.session_state.worksheets = [create_default_worksheet("Worksheet 1")]
+    if 'generated_files' not in st.session_state:
+        st.session_state.generated_files = None
     
     # Main content area
     st.markdown(f"## {t('configure_worksheets')}")
@@ -460,6 +465,10 @@ def main():
     
     if generate_button:
         generate_worksheets(generate_pdf)
+    
+    # Render downloads if they exist
+    if st.session_state.generated_files:
+        render_downloads()
     
     # Footer
     st.markdown(f"""
@@ -645,6 +654,12 @@ def generate_worksheets(generate_pdf):
     current_step = 0
     
     for worksheet in st.session_state.worksheets:
+        # Validation: Check if total questions per page exceeds 50
+        total_q_per_page = sum(p.get('questions_per_page', 0) for p in worksheet['problems'])
+        if total_q_per_page > 50:
+            st.error(t("max_questions_error", name=worksheet['name'], total=total_q_per_page))
+            return
+
         status_text.text(f"{t('generating')} {worksheet['name']}...")
         
         # Build config for generator
@@ -689,6 +704,17 @@ def generate_worksheets(generate_pdf):
     progress_bar.progress(1.0)
     status_text.text(t("all_done"))
     
+    # Store in session state for persistence
+    st.session_state.generated_files = generated_files
+    st.balloons()
+
+
+def render_downloads():
+    """Render the download buttons for generated files."""
+    generated_files = st.session_state.generated_files
+    if not generated_files:
+        return
+
     # Create download buttons
     st.markdown("---")
     st.markdown(f"### {t('download_header')}")
@@ -730,8 +756,6 @@ def generate_worksheets(generate_pdf):
                 mime=mime,
                 key=f"dl_{filename}"
             )
-    
-    st.balloons()
 
 
 if __name__ == "__main__":
