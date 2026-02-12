@@ -1,5 +1,7 @@
 import random
 import yaml
+import requests
+import os
 
 
 def generate_number(digits):
@@ -142,6 +144,27 @@ def generate_latex(config):
     return latex_content
 
 
+def compile_tex_with_texlivenet(tex_content):
+    """Compile LaTeX content to PDF using TeXLive.net API."""
+    try:
+        response = requests.post(
+            "https://texlive.net/cgi-bin/latexcgi",
+            files={
+                "filename[]": (None, "document.tex"),
+                "filecontents[]": (None, tex_content),
+                "return": (None, "pdf"),
+            },
+            timeout=60
+        )
+
+        if response.status_code == 200 and response.headers.get('content-type') == 'application/pdf':
+            return True, response.content
+        else:
+            return False, response.text[:500] if response.text else "Unknown error from API"
+    except Exception as e:
+        return False, str(e)
+
+
 def main():
     try:
         with open("config.yaml", "r", encoding="utf-8") as f:
@@ -164,8 +187,20 @@ def main():
         try:
             latex_code = generate_latex(gen_config)
             
-            with open(output_file, "w", encoding="utf-8") as f:
-                f.write(latex_code)
+            if output_file.endswith(".pdf"):
+                print(f"  - Compiling {output_file} via TeXLive.net...")
+                success, result = compile_tex_with_texlivenet(latex_code)
+                if success:
+                    with open(output_file, "wb") as f:
+                        f.write(result)
+                    print(f"  - PDF generated: {output_file}")
+                else:
+                    print(f"  - Error compiling PDF: {result}")
+            else:
+                with open(output_file, "w", encoding="utf-8") as f:
+                    f.write(latex_code)
+                print(f"  - LaTeX generated: {output_file}")
+
             print(f"  - Pages: {gen_config.get('n_page')}")
             print(f"  - Start Page: {gen_config.get('page_offset')}")
             print("  - Done.")
