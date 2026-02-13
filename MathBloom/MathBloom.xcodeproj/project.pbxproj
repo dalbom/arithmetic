@@ -1,0 +1,764 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0172C34C47A971D46B808CCC /* TeXLiveAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AB0A471D070F9690A6F61B /* TeXLiveAPIClient.swift */; };
+		0B01C3C18633DDB3A47742BE /* ShareSheetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A3DF86EA9EFB107607C92D /* ShareSheetHelper.swift */; };
+		0BF16A353C57B560A79E76E2 /* PresetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB278C9146FFDD9E6E706A33 /* PresetDetailView.swift */; };
+		11F37C1CEC0D00577DBBC484 /* ColorfulCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C70D712C94105C87507950 /* ColorfulCardView.swift */; };
+		1DF51B896EF972964A3DD08D /* AnswerKeyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111CCAAC9CA21E49F9F76F5 /* AnswerKeyEngine.swift */; };
+		22DC918F63239C08888735D5 /* ProblemTypeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAB9A84E9BCE2E8666A7C64 /* ProblemTypeCardView.swift */; };
+		235F7695553914DBDF375449 /* ProBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02A7D98538512B9DA8242C /* ProBadgeView.swift */; };
+		294F21F40DF943FB10F2CFE7 /* OperandCountStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C465A92803C3758BD7C41FB /* OperandCountStepperView.swift */; };
+		2BE45579B3AFDAC47AB7FDFD /* OperationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417F4E66B6155B3D9CD50C0E /* OperationPickerView.swift */; };
+		2C6EDF69545A7E3971081862 /* ProFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C31DC05BE47FB7182FC6D29 /* ProFeature.swift */; };
+		3A3FEF67DF301EA18366C71A /* WorksheetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07002000CDE298B987B23D0E /* WorksheetConfig.swift */; };
+		3B95EF4A41B40C8DEE444282 /* GeneratedProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72B64CB9BB0F2B00166EA31 /* GeneratedProblem.swift */; };
+		44EFB01F1E96426C20E7ABE4 /* NativePDFRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683BC41DD330BE1A37C0B5D0 /* NativePDFRenderer.swift */; };
+		4A973A10B4B64F34ADF3DC3D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDE0E17019049ED4FED74C4 /* SettingsView.swift */; };
+		4C84670D81820E47067CA3AF /* ArithmeticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0174E2442A3F8E41C4063C2E /* ArithmeticEngine.swift */; };
+		4D11CF876C45BE5C991D00FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090765A6140312E6F5FD21D4 /* ContentView.swift */; };
+		5DA9AC69FD077BFBDF6E3F5C /* WorksheetRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454A0450237AD2FF0688040E /* WorksheetRecord.swift */; };
+		5F9C56EA60E5818825D6AE85 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22174ACEC0A2CD684782045 /* StoreManager.swift */; };
+		6031E0E2AC9BF7F753B982FE /* PrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149DCBD8537B1682B47FD18 /* PrintManager.swift */; };
+		623A98119864CC23771750E9 /* WizardStepOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A675BAF0BC982E7553100584 /* WizardStepOptionsView.swift */; };
+		6C6AA6B0996291C123DFB29F /* PDFStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624F280A6A7C51F539DD0F52 /* PDFStyler.swift */; };
+		7583F31D0A7D8FE837A2DC0A /* DigitSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13EE424FB570DBE254BAFB0 /* DigitSliderView.swift */; };
+		76863D1CA32168BFD6E0138A /* Data+Multipart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F5EF6580779DCFD1A5C6E /* Data+Multipart.swift */; };
+		7DA13CA6C1177D1D49B786BA /* MathBloomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736BDDA9A0C1D9C07261A7E2 /* MathBloomApp.swift */; };
+		7DBE6F2EA7FB41E9F3349B0C /* LicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E3A0E1C7F312265AEB099 /* LicenseView.swift */; };
+		80A67893D276A5A61C4CA0DC /* WorksheetBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86213BC839F6AC4A5B6E12 /* WorksheetBuilderView.swift */; };
+		81AD3EA7C36A52F15FCB303E /* GeneratedWorksheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16DC5B668891BE523E0C0FFE /* GeneratedWorksheet.swift */; };
+		85123233DDEACE8F1B26C8B6 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F9C97A7BC2F86504C47B8B75 /* Localizable.xcstrings */; };
+		86308FDD1F14DA19CB457013 /* WizardStepIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A61B48BC7BE09747831458 /* WizardStepIndicatorView.swift */; };
+		880A6137A9F6154710C51D9F /* Int+Digits.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5D7DC5AAB3FC5FBB4BDFB9 /* Int+Digits.swift */; };
+		8F85C692492F91353E19B024 /* LaTeXGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3DDE42C05D628E7CFB35C1 /* LaTeXGenerator.swift */; };
+		91722742A50D36F7858D89D2 /* Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225BEA3AEDAADA32D7D18643 /* Preset.swift */; };
+		93B802197CAA0352941A6520 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79E95C2C1BFBA10813053A2 /* PaywallView.swift */; };
+		96ED72FE40664F978AA5AF87 /* TabReselectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00E6D958A6EDD6669B48B0C /* TabReselectionHandler.swift */; };
+		A2840DDAE4DEF4694E91E44C /* PresetSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8636A58679FECA5E78841DD0 /* PresetSummaryView.swift */; };
+		A3A7E02205F612A823A97CB3 /* EasyModeToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399917DF4080A632FE1B77B7 /* EasyModeToggleView.swift */; };
+		A7952231389138D323EBB566 /* ProblemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E843D5980D8747DDCB281 /* ProblemConfig.swift */; };
+		BE7CBE1960235CCB08E654C5 /* PDFPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686FBDE1F937B1273EA334B /* PDFPreviewViewModel.swift */; };
+		BE7D1DEC7F9D5526580692EC /* ChildFriendlyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03922537013B8DD05C251543 /* ChildFriendlyButton.swift */; };
+		C1AE571040B1FCFEB0594F2B /* CarryBorrowToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5DE599F32A80ABF297302 /* CarryBorrowToggleView.swift */; };
+		C400DDF6196E7DC3882745BB /* WizardStepOperationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C39EF61C87047E5E5131C /* WizardStepOperationView.swift */; };
+		C4A74EBF820397B7881047E8 /* PresetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEEDDB4737EC545073B65C8 /* PresetListView.swift */; };
+		CC2E63E9EE00FBCE5AE954E1 /* WizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF213316129CD9496366B8 /* WizardView.swift */; };
+		CE7D74C925151BF75C2CCB18 /* PresetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D71B1C6EA35875197837B9 /* PresetListViewModel.swift */; };
+		CEA145E796C5E9C075017B4A /* OperationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD1230D9F99B7E4B0312054 /* OperationType.swift */; };
+		D4534C0FA66E7B76DEDD8461 /* WorksheetBuilderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3BA5C0C9FA888280978796 /* WorksheetBuilderViewModel.swift */; };
+		D4AFE51D607F5D5BD3A79AB5 /* PDFLayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE1C455C54E3DB1B0E97D88 /* PDFLayoutConstants.swift */; };
+		D68F9CE17CEF5E46ADC505DB /* HowToUseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEEB106BED6244E202251DA /* HowToUseView.swift */; };
+		D74CA2068CC93EE83EDA21FD /* RecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CA080135A4A43560FF08F8 /* RecordsView.swift */; };
+		DA1BE752C0DBF3B61E61CFEE /* PDFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1384421DC90C025B7E55F9 /* PDFPreviewView.swift */; };
+		DCA5D76A5848E8F8A888F7F9 /* WorksheetHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA9FE7C1E76AA817573864 /* WorksheetHistoryListView.swift */; };
+		DF944D163FD564DCEAB1D055 /* WizardStepOperandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06096A00DEE240DFA4959E2D /* WizardStepOperandsView.swift */; };
+		F00BC18FD85532DB55C9F0F2 /* WizardStepReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872DBB11F7A9C4D1EF568149 /* WizardStepReviewView.swift */; };
+		F4D3DA4F3D23DEA4E98A68D8 /* WizardStepPageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4CBEAD7C48CA243258AD3 /* WizardStepPageSettingsView.swift */; };
+		FDAFE13F318D74B8C59BC368 /* PDFPageThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63848ED15E8994F9D6202317 /* PDFPageThumbnailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA741392B527D3F4E24FC2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0CF86DF2F920B71AD6A9B68F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D9FBB6C07841B25FAFB7F2B;
+			remoteInfo = MathBloom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0174E2442A3F8E41C4063C2E /* ArithmeticEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmeticEngine.swift; sourceTree = "<group>"; };
+		03922537013B8DD05C251543 /* ChildFriendlyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildFriendlyButton.swift; sourceTree = "<group>"; };
+		06096A00DEE240DFA4959E2D /* WizardStepOperandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepOperandsView.swift; sourceTree = "<group>"; };
+		07002000CDE298B987B23D0E /* WorksheetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorksheetConfig.swift; sourceTree = "<group>"; };
+		090765A6140312E6F5FD21D4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		09A5DE599F32A80ABF297302 /* CarryBorrowToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarryBorrowToggleView.swift; sourceTree = "<group>"; };
+		0AD1230D9F99B7E4B0312054 /* OperationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationType.swift; sourceTree = "<group>"; };
+		0DDE0E17019049ED4FED74C4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0FEEB106BED6244E202251DA /* HowToUseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseView.swift; sourceTree = "<group>"; };
+		16C70D712C94105C87507950 /* ColorfulCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulCardView.swift; sourceTree = "<group>"; };
+		16DC5B668891BE523E0C0FFE /* GeneratedWorksheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedWorksheet.swift; sourceTree = "<group>"; };
+		1BE1C455C54E3DB1B0E97D88 /* PDFLayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLayoutConstants.swift; sourceTree = "<group>"; };
+		1C1E3A0E1C7F312265AEB099 /* LicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseView.swift; sourceTree = "<group>"; };
+		225BEA3AEDAADA32D7D18643 /* Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preset.swift; sourceTree = "<group>"; };
+		2B02A7D98538512B9DA8242C /* ProBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProBadgeView.swift; sourceTree = "<group>"; };
+		399917DF4080A632FE1B77B7 /* EasyModeToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyModeToggleView.swift; sourceTree = "<group>"; };
+		3C31DC05BE47FB7182FC6D29 /* ProFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProFeature.swift; sourceTree = "<group>"; };
+		417F4E66B6155B3D9CD50C0E /* OperationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationPickerView.swift; sourceTree = "<group>"; };
+		454A0450237AD2FF0688040E /* WorksheetRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorksheetRecord.swift; sourceTree = "<group>"; };
+		4686FBDE1F937B1273EA334B /* PDFPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewViewModel.swift; sourceTree = "<group>"; };
+		48A61B48BC7BE09747831458 /* WizardStepIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepIndicatorView.swift; sourceTree = "<group>"; };
+		5E3DDE42C05D628E7CFB35C1 /* LaTeXGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaTeXGenerator.swift; sourceTree = "<group>"; };
+		624F280A6A7C51F539DD0F52 /* PDFStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFStyler.swift; sourceTree = "<group>"; };
+		63848ED15E8994F9D6202317 /* PDFPageThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPageThumbnailView.swift; sourceTree = "<group>"; };
+		683BC41DD330BE1A37C0B5D0 /* NativePDFRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativePDFRenderer.swift; sourceTree = "<group>"; };
+		688E843D5980D8747DDCB281 /* ProblemConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemConfig.swift; sourceTree = "<group>"; };
+		6EEA9FE7C1E76AA817573864 /* WorksheetHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorksheetHistoryListView.swift; sourceTree = "<group>"; };
+		736BDDA9A0C1D9C07261A7E2 /* MathBloomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathBloomApp.swift; sourceTree = "<group>"; };
+		7CEEDDB4737EC545073B65C8 /* PresetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListView.swift; sourceTree = "<group>"; };
+		83D53CE1418A8F7880D809E1 /* MathBloom.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MathBloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8636A58679FECA5E78841DD0 /* PresetSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSummaryView.swift; sourceTree = "<group>"; };
+		872DBB11F7A9C4D1EF568149 /* WizardStepReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepReviewView.swift; sourceTree = "<group>"; };
+		8C465A92803C3758BD7C41FB /* OperandCountStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperandCountStepperView.swift; sourceTree = "<group>"; };
+		93D71B1C6EA35875197837B9 /* PresetListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetListViewModel.swift; sourceTree = "<group>"; };
+		A00E6D958A6EDD6669B48B0C /* TabReselectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabReselectionHandler.swift; sourceTree = "<group>"; };
+		A111CCAAC9CA21E49F9F76F5 /* AnswerKeyEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerKeyEngine.swift; sourceTree = "<group>"; };
+		A22174ACEC0A2CD684782045 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		A675BAF0BC982E7553100584 /* WizardStepOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepOptionsView.swift; sourceTree = "<group>"; };
+		A9AB0A471D070F9690A6F61B /* TeXLiveAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeXLiveAPIClient.swift; sourceTree = "<group>"; };
+		AB278C9146FFDD9E6E706A33 /* PresetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDetailView.swift; sourceTree = "<group>"; };
+		BE86213BC839F6AC4A5B6E12 /* WorksheetBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorksheetBuilderView.swift; sourceTree = "<group>"; };
+		C6C4CBEAD7C48CA243258AD3 /* WizardStepPageSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepPageSettingsView.swift; sourceTree = "<group>"; };
+		C79E95C2C1BFBA10813053A2 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		D0D57034267C8A09539F63CE /* MathBloomTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MathBloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D13EE424FB570DBE254BAFB0 /* DigitSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitSliderView.swift; sourceTree = "<group>"; };
+		D149DCBD8537B1682B47FD18 /* PrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintManager.swift; sourceTree = "<group>"; };
+		D7CA080135A4A43560FF08F8 /* RecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsView.swift; sourceTree = "<group>"; };
+		D97F5EF6580779DCFD1A5C6E /* Data+Multipart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Multipart.swift"; sourceTree = "<group>"; };
+		DA3BA5C0C9FA888280978796 /* WorksheetBuilderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorksheetBuilderViewModel.swift; sourceTree = "<group>"; };
+		DB5D7DC5AAB3FC5FBB4BDFB9 /* Int+Digits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Digits.swift"; sourceTree = "<group>"; };
+		E0A3DF86EA9EFB107607C92D /* ShareSheetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetHelper.swift; sourceTree = "<group>"; };
+		EF1384421DC90C025B7E55F9 /* PDFPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewView.swift; sourceTree = "<group>"; };
+		EFAB9A84E9BCE2E8666A7C64 /* ProblemTypeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemTypeCardView.swift; sourceTree = "<group>"; };
+		F72B64CB9BB0F2B00166EA31 /* GeneratedProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratedProblem.swift; sourceTree = "<group>"; };
+		F84C39EF61C87047E5E5131C /* WizardStepOperationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardStepOperationView.swift; sourceTree = "<group>"; };
+		F9C97A7BC2F86504C47B8B75 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		FAEF213316129CD9496366B8 /* WizardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1FB8BC629687306EB8D6B2C7 = {
+			isa = PBXGroup;
+			children = (
+				56D2AF5AEB531AFF00755321 /* MathBloom */,
+				28667DDBF8858E9C19756BA4 /* MathBloomTests */,
+				7E56D67B573F12034D8E9C92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		28667DDBF8858E9C19756BA4 /* MathBloomTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MathBloomTests;
+			sourceTree = "<group>";
+		};
+		56D2AF5AEB531AFF00755321 /* MathBloom */ = {
+			isa = PBXGroup;
+			children = (
+				090765A6140312E6F5FD21D4 /* ContentView.swift */,
+				736BDDA9A0C1D9C07261A7E2 /* MathBloomApp.swift */,
+				69B833B6FEFFF1FC3B197F6B /* Engine */,
+				D33EE799D364BC54C841F7D3 /* Extensions */,
+				8F32E1DCD82E3BC1D5308F26 /* Localization */,
+				625E3AAD831F54C7431A718F /* Models */,
+				7FBA8D57C355825FE5EC1B65 /* Network */,
+				83124AB5590087FD59314611 /* PDFRenderer */,
+				F4E233E02057B9466A9E9451 /* Store */,
+				A50CD61C3AC24B0CE8F4FAD9 /* Utilities */,
+				D5A26DE71A0B7BCC1F240207 /* ViewModels */,
+				E6C77E4CAABD5DB8D94D2D1C /* Views */,
+			);
+			path = MathBloom;
+			sourceTree = "<group>";
+		};
+		625E3AAD831F54C7431A718F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F72B64CB9BB0F2B00166EA31 /* GeneratedProblem.swift */,
+				16DC5B668891BE523E0C0FFE /* GeneratedWorksheet.swift */,
+				0AD1230D9F99B7E4B0312054 /* OperationType.swift */,
+				225BEA3AEDAADA32D7D18643 /* Preset.swift */,
+				688E843D5980D8747DDCB281 /* ProblemConfig.swift */,
+				07002000CDE298B987B23D0E /* WorksheetConfig.swift */,
+				454A0450237AD2FF0688040E /* WorksheetRecord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69B833B6FEFFF1FC3B197F6B /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				A111CCAAC9CA21E49F9F76F5 /* AnswerKeyEngine.swift */,
+				0174E2442A3F8E41C4063C2E /* ArithmeticEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		75FC20FCC570425B798A2685 /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				D7CA080135A4A43560FF08F8 /* RecordsView.swift */,
+				6EEA9FE7C1E76AA817573864 /* WorksheetHistoryListView.swift */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
+		7E56D67B573F12034D8E9C92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				83D53CE1418A8F7880D809E1 /* MathBloom.app */,
+				D0D57034267C8A09539F63CE /* MathBloomTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7FBA8D57C355825FE5EC1B65 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5E3DDE42C05D628E7CFB35C1 /* LaTeXGenerator.swift */,
+				A9AB0A471D070F9690A6F61B /* TeXLiveAPIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		83124AB5590087FD59314611 /* PDFRenderer */ = {
+			isa = PBXGroup;
+			children = (
+				683BC41DD330BE1A37C0B5D0 /* NativePDFRenderer.swift */,
+				1BE1C455C54E3DB1B0E97D88 /* PDFLayoutConstants.swift */,
+				624F280A6A7C51F539DD0F52 /* PDFStyler.swift */,
+			);
+			path = PDFRenderer;
+			sourceTree = "<group>";
+		};
+		8F32E1DCD82E3BC1D5308F26 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F9C97A7BC2F86504C47B8B75 /* Localizable.xcstrings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		9F87742D321B964EB320960F /* Presets */ = {
+			isa = PBXGroup;
+			children = (
+				AB278C9146FFDD9E6E706A33 /* PresetDetailView.swift */,
+				7CEEDDB4737EC545073B65C8 /* PresetListView.swift */,
+				8636A58679FECA5E78841DD0 /* PresetSummaryView.swift */,
+			);
+			path = Presets;
+			sourceTree = "<group>";
+		};
+		A50CD61C3AC24B0CE8F4FAD9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D149DCBD8537B1682B47FD18 /* PrintManager.swift */,
+				E0A3DF86EA9EFB107607C92D /* ShareSheetHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D33EE799D364BC54C841F7D3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D97F5EF6580779DCFD1A5C6E /* Data+Multipart.swift */,
+				DB5D7DC5AAB3FC5FBB4BDFB9 /* Int+Digits.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D5A26DE71A0B7BCC1F240207 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4686FBDE1F937B1273EA334B /* PDFPreviewViewModel.swift */,
+				93D71B1C6EA35875197837B9 /* PresetListViewModel.swift */,
+				DA3BA5C0C9FA888280978796 /* WorksheetBuilderViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DA49FE208BEE5FD99FCDEEAB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0FEEB106BED6244E202251DA /* HowToUseView.swift */,
+				1C1E3A0E1C7F312265AEB099 /* LicenseView.swift */,
+				0DDE0E17019049ED4FED74C4 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		E6C77E4CAABD5DB8D94D2D1C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC246EEBB3C4D29896A82F77 /* Builder */,
+				9F87742D321B964EB320960F /* Presets */,
+				FEF289F1A0C2973D1A19FCB6 /* Preview */,
+				75FC20FCC570425B798A2685 /* Records */,
+				DA49FE208BEE5FD99FCDEEAB /* Settings */,
+				FF08195CC26E3F10B2F9777D /* Shared */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F4E233E02057B9466A9E9451 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				C79E95C2C1BFBA10813053A2 /* PaywallView.swift */,
+				3C31DC05BE47FB7182FC6D29 /* ProFeature.swift */,
+				A22174ACEC0A2CD684782045 /* StoreManager.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		FC246EEBB3C4D29896A82F77 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				09A5DE599F32A80ABF297302 /* CarryBorrowToggleView.swift */,
+				D13EE424FB570DBE254BAFB0 /* DigitSliderView.swift */,
+				399917DF4080A632FE1B77B7 /* EasyModeToggleView.swift */,
+				8C465A92803C3758BD7C41FB /* OperandCountStepperView.swift */,
+				417F4E66B6155B3D9CD50C0E /* OperationPickerView.swift */,
+				EFAB9A84E9BCE2E8666A7C64 /* ProblemTypeCardView.swift */,
+				48A61B48BC7BE09747831458 /* WizardStepIndicatorView.swift */,
+				06096A00DEE240DFA4959E2D /* WizardStepOperandsView.swift */,
+				F84C39EF61C87047E5E5131C /* WizardStepOperationView.swift */,
+				A675BAF0BC982E7553100584 /* WizardStepOptionsView.swift */,
+				C6C4CBEAD7C48CA243258AD3 /* WizardStepPageSettingsView.swift */,
+				872DBB11F7A9C4D1EF568149 /* WizardStepReviewView.swift */,
+				FAEF213316129CD9496366B8 /* WizardView.swift */,
+				BE86213BC839F6AC4A5B6E12 /* WorksheetBuilderView.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		FEF289F1A0C2973D1A19FCB6 /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				63848ED15E8994F9D6202317 /* PDFPageThumbnailView.swift */,
+				EF1384421DC90C025B7E55F9 /* PDFPreviewView.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		FF08195CC26E3F10B2F9777D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				03922537013B8DD05C251543 /* ChildFriendlyButton.swift */,
+				16C70D712C94105C87507950 /* ColorfulCardView.swift */,
+				2B02A7D98538512B9DA8242C /* ProBadgeView.swift */,
+				A00E6D958A6EDD6669B48B0C /* TabReselectionHandler.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D9FBB6C07841B25FAFB7F2B /* MathBloom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FCB29611FF3925DAD733DFF /* Build configuration list for PBXNativeTarget "MathBloom" */;
+			buildPhases = (
+				C90BF8AEF9758BB65C06C928 /* Sources */,
+				DA506CFBF952C87AFB74AB45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MathBloom;
+			packageProductDependencies = (
+			);
+			productName = MathBloom;
+			productReference = 83D53CE1418A8F7880D809E1 /* MathBloom.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D6BA1F85A51CC93C474A8A89 /* MathBloomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97C5121129EB454E4F4D1D5D /* Build configuration list for PBXNativeTarget "MathBloomTests" */;
+			buildPhases = (
+				A3642094A068F08D06C2EBC9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F855F1D83FCA8BAFB92673C8 /* PBXTargetDependency */,
+			);
+			name = MathBloomTests;
+			packageProductDependencies = (
+			);
+			productName = MathBloomTests;
+			productReference = D0D57034267C8A09539F63CE /* MathBloomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0CF86DF2F920B71AD6A9B68F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					1D9FBB6C07841B25FAFB7F2B = {
+						DevelopmentTeam = TFTZ3B7PCX;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F5439D8B018EF03D2F3C1F8E /* Build configuration list for PBXProject "MathBloom" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				de,
+				en,
+				ko,
+			);
+			mainGroup = 1FB8BC629687306EB8D6B2C7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D9FBB6C07841B25FAFB7F2B /* MathBloom */,
+				D6BA1F85A51CC93C474A8A89 /* MathBloomTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA506CFBF952C87AFB74AB45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85123233DDEACE8F1B26C8B6 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3642094A068F08D06C2EBC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C90BF8AEF9758BB65C06C928 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DF51B896EF972964A3DD08D /* AnswerKeyEngine.swift in Sources */,
+				4C84670D81820E47067CA3AF /* ArithmeticEngine.swift in Sources */,
+				C1AE571040B1FCFEB0594F2B /* CarryBorrowToggleView.swift in Sources */,
+				BE7D1DEC7F9D5526580692EC /* ChildFriendlyButton.swift in Sources */,
+				11F37C1CEC0D00577DBBC484 /* ColorfulCardView.swift in Sources */,
+				4D11CF876C45BE5C991D00FA /* ContentView.swift in Sources */,
+				76863D1CA32168BFD6E0138A /* Data+Multipart.swift in Sources */,
+				7583F31D0A7D8FE837A2DC0A /* DigitSliderView.swift in Sources */,
+				A3A7E02205F612A823A97CB3 /* EasyModeToggleView.swift in Sources */,
+				3B95EF4A41B40C8DEE444282 /* GeneratedProblem.swift in Sources */,
+				81AD3EA7C36A52F15FCB303E /* GeneratedWorksheet.swift in Sources */,
+				D68F9CE17CEF5E46ADC505DB /* HowToUseView.swift in Sources */,
+				880A6137A9F6154710C51D9F /* Int+Digits.swift in Sources */,
+				8F85C692492F91353E19B024 /* LaTeXGenerator.swift in Sources */,
+				7DBE6F2EA7FB41E9F3349B0C /* LicenseView.swift in Sources */,
+				7DA13CA6C1177D1D49B786BA /* MathBloomApp.swift in Sources */,
+				44EFB01F1E96426C20E7ABE4 /* NativePDFRenderer.swift in Sources */,
+				294F21F40DF943FB10F2CFE7 /* OperandCountStepperView.swift in Sources */,
+				2BE45579B3AFDAC47AB7FDFD /* OperationPickerView.swift in Sources */,
+				CEA145E796C5E9C075017B4A /* OperationType.swift in Sources */,
+				D4AFE51D607F5D5BD3A79AB5 /* PDFLayoutConstants.swift in Sources */,
+				FDAFE13F318D74B8C59BC368 /* PDFPageThumbnailView.swift in Sources */,
+				DA1BE752C0DBF3B61E61CFEE /* PDFPreviewView.swift in Sources */,
+				BE7CBE1960235CCB08E654C5 /* PDFPreviewViewModel.swift in Sources */,
+				6C6AA6B0996291C123DFB29F /* PDFStyler.swift in Sources */,
+				93B802197CAA0352941A6520 /* PaywallView.swift in Sources */,
+				91722742A50D36F7858D89D2 /* Preset.swift in Sources */,
+				0BF16A353C57B560A79E76E2 /* PresetDetailView.swift in Sources */,
+				C4A74EBF820397B7881047E8 /* PresetListView.swift in Sources */,
+				CE7D74C925151BF75C2CCB18 /* PresetListViewModel.swift in Sources */,
+				A2840DDAE4DEF4694E91E44C /* PresetSummaryView.swift in Sources */,
+				6031E0E2AC9BF7F753B982FE /* PrintManager.swift in Sources */,
+				235F7695553914DBDF375449 /* ProBadgeView.swift in Sources */,
+				2C6EDF69545A7E3971081862 /* ProFeature.swift in Sources */,
+				A7952231389138D323EBB566 /* ProblemConfig.swift in Sources */,
+				22DC918F63239C08888735D5 /* ProblemTypeCardView.swift in Sources */,
+				D74CA2068CC93EE83EDA21FD /* RecordsView.swift in Sources */,
+				4A973A10B4B64F34ADF3DC3D /* SettingsView.swift in Sources */,
+				0B01C3C18633DDB3A47742BE /* ShareSheetHelper.swift in Sources */,
+				5F9C56EA60E5818825D6AE85 /* StoreManager.swift in Sources */,
+				96ED72FE40664F978AA5AF87 /* TabReselectionHandler.swift in Sources */,
+				0172C34C47A971D46B808CCC /* TeXLiveAPIClient.swift in Sources */,
+				86308FDD1F14DA19CB457013 /* WizardStepIndicatorView.swift in Sources */,
+				DF944D163FD564DCEAB1D055 /* WizardStepOperandsView.swift in Sources */,
+				C400DDF6196E7DC3882745BB /* WizardStepOperationView.swift in Sources */,
+				623A98119864CC23771750E9 /* WizardStepOptionsView.swift in Sources */,
+				F4D3DA4F3D23DEA4E98A68D8 /* WizardStepPageSettingsView.swift in Sources */,
+				F00BC18FD85532DB55C9F0F2 /* WizardStepReviewView.swift in Sources */,
+				CC2E63E9EE00FBCE5AE954E1 /* WizardView.swift in Sources */,
+				80A67893D276A5A61C4CA0DC /* WorksheetBuilderView.swift in Sources */,
+				D4534C0FA66E7B76DEDD8461 /* WorksheetBuilderViewModel.swift in Sources */,
+				3A3FEF67DF301EA18366C71A /* WorksheetConfig.swift in Sources */,
+				DCA5D76A5848E8F8A888F7F9 /* WorksheetHistoryListView.swift in Sources */,
+				5DA9AC69FD077BFBDF6E3F5C /* WorksheetRecord.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F855F1D83FCA8BAFB92673C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D9FBB6C07841B25FAFB7F2B /* MathBloom */;
+			targetProxy = FAA741392B527D3F4E24FC2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04D6FD8F4B88E1AD560CDC25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "산수해봄";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		86A9B705E937EF806787D55A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haebom.mathbloom.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathBloom.app/MathBloom";
+			};
+			name = Release;
+		};
+		8BAE34601416C68C1F809D81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TFTZ3B7PCX;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haebom.mathbloom;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8E3E2B469A67039E7F9C6818 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "산수해봄";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		943CE4B306B1200647EA6259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TFTZ3B7PCX;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haebom.mathbloom;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DC9F8DF7E1A3BA2DCFCDC34A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haebom.mathbloom.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MathBloom.app/MathBloom";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6FCB29611FF3925DAD733DFF /* Build configuration list for PBXNativeTarget "MathBloom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				943CE4B306B1200647EA6259 /* Debug */,
+				8BAE34601416C68C1F809D81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		97C5121129EB454E4F4D1D5D /* Build configuration list for PBXNativeTarget "MathBloomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC9F8DF7E1A3BA2DCFCDC34A /* Debug */,
+				86A9B705E937EF806787D55A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F5439D8B018EF03D2F3C1F8E /* Build configuration list for PBXProject "MathBloom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3E2B469A67039E7F9C6818 /* Debug */,
+				04D6FD8F4B88E1AD560CDC25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0CF86DF2F920B71AD6A9B68F /* Project object */;
+}
